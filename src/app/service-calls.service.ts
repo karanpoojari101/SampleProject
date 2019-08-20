@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
-import {Car} from './Car';
+import {PersonDetails} from './PersonDetails';
 
 @Injectable({
   providedIn: 'root'
@@ -10,17 +10,16 @@ import {Car} from './Car';
 export class ServiceCallsService {
 
   baseUrl = 'http://localhost/api';
-  cars: Car[];
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<Car[]> {
-    return this.http.post(`${this.baseUrl}/store`, null).pipe(
-      map((res) => {
-        this.cars = res.data;
-        return this.cars;
-      }),
-      catchError(this.handleError));
+storeDetails(person): Observable<any> {
+  console.log(person.firstName+"service console");
+  return this.http.post(`${this.baseUrl}/store`, { data: person })
+  .pipe(map((res) => {
+    console.log(person);
+  }),
+  catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {

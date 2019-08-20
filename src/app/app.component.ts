@@ -15,6 +15,12 @@ export class AppComponent {
   LastName = '';
   Email = '';
   Password = '';
+  person={
+    firstName: '',
+    lastName:'',
+    email:'',
+    password: ''
+  };
 
 constructor(private frmbuilder: FormBuilder , private http: HttpClient, private service: ServiceCallsService) {
   this.signupForm = frmbuilder.group({
@@ -32,13 +38,20 @@ ngOnInit() {
     this.LastName = signupForm.controls.lname.value;
     this.Email = signupForm.controls.EmailId.value;
     this.Password = signupForm.controls.userpassword.value;
+    this.person.firstName = signupForm.controls.fname.value;
+    this.person.lastName = signupForm.controls.lname.value;
+    this.person.email = signupForm.controls.EmailId.value;
+    this.person.password = signupForm.controls.userpassword.value;
+
     console.log('fname:', this.FirstName);
     console.log('lname', this.LastName);
     console.log('EmailId', this.Email);
     console.log('userpassword,', this.Password);
     // console.log(signupForm.controls);
+    this.service.storeDetails(this.person);
   }
   btfunc() {
     window.alert('Signin sucessfull');
+    
   }
 }

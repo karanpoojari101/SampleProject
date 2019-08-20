@@ -4,8 +4,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClient } from '@angular/common/http';
 import {HttpClientModule } from '@angular/common/http';
+import { ServiceCallsService } from './service-calls.service';
 
 
 @NgModule({
@@ -18,7 +18,7 @@ import {HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [HttpClient],
+  providers: [ServiceCallsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
