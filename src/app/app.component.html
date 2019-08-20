@@ -1,0 +1,36 @@
+<h1>Sign In here</h1>
+<div class="container">
+  <div class="row">
+    <div class="form_bg">
+      <form [formGroup]='signupForm' (ngSubmit)="PostData(signupForm)">
+        <div class="form-group">
+            <input type="text"  formControlName='fname' placeholder="Your First Name">
+            <br><span *ngIf="signupForm.controls['fname'].hasError('required')">First Name Required!</span>
+        </div>
+        <div class="form-group">
+          <br>  
+          <input type="text" formControlName='lname' placeholder="Your Last Name">
+          <br>
+          <span *ngIf="signupForm.controls['lname'].hasError('required')">Last Name Required</span>
+        </div>
+        <div class="form-group">
+          <br>  
+          <input type="text" formControlName='EmailId' placeholder="Your EmailId">
+          <br><span *ngIf="signupForm.controls['EmailId'].hasError('required')">
+            Email should be in XYZ@gmail.com format</span>
+        </div>
+        <br>
+        <div class="form-group">
+            <input type="Password" formControlName='userpassword' placeholder="Your Password">
+            <br>
+            <span *ngIf="signupForm.controls['userpassword'].hasError('required')">
+              Password should contain minimum 10 letters</span>
+        </div>
+        <br>
+        <div>
+          <input id="a1" type="submit" value="Post data" [disabled]='!signupForm.valid' (click)="btfunc()">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
